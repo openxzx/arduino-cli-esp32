@@ -1,4 +1,5 @@
 
+/* Install lib command for arduino-cli lib install "Adafruit NeoPixel" */
 #include <Adafruit_NeoPixel.h>
 
 #define WS281X_PIN	4
