@@ -46,6 +46,14 @@ cd your_sketch_name
 arduino-cli compile -b esp32:esp32:esp32
 ```
 
+Or specify the target file of the directory
+
+```
+cd your_sketch_name
+
+arduino-cli compile -b esp32:esp32:esp32 --output-dir target_directory
+```
+
 ### Enable USB device authority
 
 Create 99-usbdev.rules in /etc/udev/rules.d
@@ -60,6 +68,14 @@ Then restart linux system.
 
 ### Upload sketch
 
+If the USB device is /dev/ttyUSB0, please use the following command:
+
 ```
-arduino-cli upload -p /dev/ttyUSBx -b esp32:esp32:esp32
+arduino-cli upload -p /dev/ttyUSB0 -b esp32:esp32:esp32
+```
+
+Or specify the target file
+
+```
+arduino-cli upload -p /dev/ttyUSB0 -b esp32:esp32:esp32 --input-file your_target_file
 ```
