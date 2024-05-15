@@ -79,3 +79,11 @@ Or specify the target file
 ```
 arduino-cli upload -p /dev/ttyUSB0 -b esp32:esp32:esp32 --input-file your_target_file
 ```
+
+### Debug sketch
+
+Default baudrate for 9600, it can set the baudrate via -c option.
+
+```
+arduino-cli monitor -p /dev/ttyUSB0 -c 115200
+```
