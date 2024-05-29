@@ -1,4 +1,6 @@
-#include<string.h>
+#include <array>
+
+using namespace std;
 
 #define RED_PIN     18
 #define GREEN_PIN   19
@@ -14,7 +16,7 @@
 #define DATA_SIZE   8
 
 int idx = 0;
-char data[DATA_SIZE] = {0};
+array <char, 8> data = {0};
 
 void setup() {
   Serial.begin(115200);
@@ -33,10 +35,9 @@ void setup() {
 
 void loop() {
   idx = 0;
-  memset(data, 0, sizeof(data));
 
   if (Serial.available() > 0) {
-    while (Serial.available() > 0 && idx < sizeof(data) - 1) {
+    while (Serial.available() > 0 && idx < data.size() - 1) {
       char tmp = Serial.read();
       if (tmp == '\r')
         break;
@@ -44,27 +45,27 @@ void loop() {
     }
     data[idx] = '\0';
 
-    if (!strncmp(data, RED_STR, strlen(RED_STR))) {
+    if (!strncmp(&data[0], RED_STR, strlen(RED_STR))) {
       digitalWrite(RED_PIN, HIGH);
       digitalWrite(GREEN_PIN, LOW);
       digitalWrite(BLUE_PIN, LOW);
-    } else if (!strncmp(data, GREEN_STR, strlen(GREEN_STR))) {
+    } else if (!strncmp(&data[0], GREEN_STR, strlen(GREEN_STR))) {
       digitalWrite(RED_PIN, LOW);
       digitalWrite(GREEN_PIN, HIGH);
       digitalWrite(BLUE_PIN, LOW);
-    } else if (!strncmp(data, BLUE_STR, strlen(BLUE_STR))) {
+    } else if (!strncmp(&data[0], BLUE_STR, strlen(BLUE_STR))) {
       digitalWrite(RED_PIN, LOW);
       digitalWrite(GREEN_PIN, LOW);
       digitalWrite(BLUE_PIN, HIGH);
-    } else if (!strncmp(data, YELLOW_STR, strlen(YELLOW_STR))) {
+    } else if (!strncmp(&data[0], YELLOW_STR, strlen(YELLOW_STR))) {
       digitalWrite(RED_PIN, HIGH);
       digitalWrite(GREEN_PIN, HIGH);
       digitalWrite(BLUE_PIN, LOW);
-    } else if (!strncmp(data, WHITE_STR, strlen(WHITE_STR))) {
+    } else if (!strncmp(&data[0], WHITE_STR, strlen(WHITE_STR))) {
       digitalWrite(RED_PIN, HIGH);
       digitalWrite(GREEN_PIN, HIGH);
       digitalWrite(BLUE_PIN, HIGH);
-    } else if (!strncmp(data, BLACK_STR, strlen(BLACK_STR))) {
+    } else if (!strncmp(&data[0], BLACK_STR, strlen(BLACK_STR))) {
       digitalWrite(RED_PIN, LOW);
       digitalWrite(GREEN_PIN, LOW);
       digitalWrite(BLUE_PIN, LOW);
